@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Vista de Bloques – Ahorra+</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7faff;
+      margin: 20px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .row {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+    .component {
+      background-color: #e6f0ff;
+      border: 2px solid #007acc;
+      border-radius: 12px;
+      padding: 20px;
+      width: 250px;
+      text-align: center;
+    }
+    .group-title {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .relation {
+      margin: 10px 0;
+      font-weight: bold;
+    }
+    .physical {
+      background-color: #d1ecf1;
+      border-color: #0c5460;
+    }
+    .justification {
+      background-color: #fff3cd;
+      border-left: 4px solid #856404;
+      padding: 15px;
+      margin: 20px 0;
+      width: 80%;
+      font-size: 0.95em;
+    }
+    .execution-step {
+      background: #fff;
+      border-left: 4px solid #007acc;
+      padding: 10px;
+      margin-bottom: 10px;
+      width: 80%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Vista de Bloques – Nivel 1 (Componentes Lógicos)</h2>
+
+    <div class="row">
+      <div class="component">
+        <div class="group-title">App Web</div>
+        Cliente & Proveedor<br>
+        (Interfaz Web)
+      </div>
+      <div class="component">
+        <div class="group-title">App Móvil</div>
+        Cliente<br>
+        (Interfaz Android/iOS)
+      </div>
+    </div>
+
+    <div class="justification">
+      <strong>Justificación:</strong> Separar la App Web y Móvil permite optimizar la experiencia para cada tipo de dispositivo. Además, permite a clientes y proveedores tener accesos diferenciados según el canal más adecuado para su uso.
+    </div>
+
+    <div class="row">
+      <div class="component">
+        <div class="group-title">Backend Web</div>
+        - Gestión de productos<br>
+        - Compras<br>
+        - Autenticación<br>
+        - API proveedores
+      </div>
+      <div class="component">
+        <div class="group-title">Backend Móvil</div>
+        - Recomendaciones IA<br>
+        - Alertas<br>
+        - Carrito de compras<br>
+        - Registro y Login
+      </div>
+    </div>
+
+    <div class="justification">
+      <strong>Justificación:</strong> Al separar los backend para Web y Móvil se logra mayor independencia en el desarrollo y despliegue. Esto permite escalar, mantener y adaptar funcionalidades específicas para cada canal sin afectar al otro, evitando un enfoque monolítico.
+    </div>
+
+    <div class="row">
+      <div class="component">
+        <div class="group-title">Base de Datos</div>
+        - Usuarios<br>
+        - Productos<br>
+        - Precios<br>
+        - Historial
+      </div>
+      <div class="component">
+        <div class="group-title">Pasarelas de Pago</div>
+        (Yape, Plin, Niubiz)<br>
+        Integración externa
+      </div>
+      <div class="component">
+        <div class="group-title">API Supermercados</div>
+        Web scraping / REST API<br>
+        Entrada de datos
+      </div>
+    </div>
+
+    <div class="justification">
+      <strong>Justificación:</strong> Se mantiene la base de datos como componente centralizado para gestionar la información estructurada. Las integraciones con pasarelas de pago y APIs externas se diseñan como componentes externos desacoplados, permitiendo escalabilidad, cumplimiento legal y flexibilidad ante cambios en servicios de terceros.
+    </div>
+
+    <hr>
+    <h2>Vista de Bloques – Nivel 2 (Despliegue físico)</h2>
+
+    <div class="row">
+      <div class="component physical">
+        <div class="group-title">Servidor Web</div>
+        Aloja App Web (Frontend)<br>
+        + Redirecciona a Backend Web
+      </div>
+      <div class="component physical">
+        <div class="group-title">Servidor Móvil</div>
+        Backend Móvil + APIs IA<br>
+        Procesa datos móviles
+      </div>
+      <div class="component physical">
+        <div class="group-title">Servidor Backend</div>
+        Lógica de negocio<br>
+        Productos, pagos, integración API
+      </div>
+      <div class="component physical">
+        <div class="group-title">Base de Datos SQL</div>
+        Usuarios, productos, historial
+      </div>
+    </div>
+
+    <div class="justification">
+      <strong>Justificación:</strong> Se distribuyen los componentes en servidores separados para facilitar la escalabilidad horizontal. Por ejemplo, el servidor móvil puede crecer independientemente según la demanda de usuarios móviles. El backend se divide para evitar un monolito y garantizar mantenibilidad. La base de datos se aísla para garantizar la integridad y acceso controlado a los datos.
+    </div>
+
+    <div class="relation">► App Web y App Móvil se conectan con su respectivo backend</div>
+    <div class="relation">► Backend Web y Móvil interactúan con Base de Datos</div>
+    <div class="relation">► Backend Web se conecta con APIs y Pasarelas</div>
+
+    <hr>
+    <h2>Vista de Ejecución – Flujo de Compra Personalizada</h2>
+    <div class="execution-step"><strong>Paso 1:</strong> El usuario (App Web o Móvil) inicia sesión con credenciales o redes sociales.</div>
+    <div class="execution-step"><strong>Paso 2:</strong> El sistema valida con el Backend correspondiente y accede a datos del perfil desde la base de datos.</div>
+    <div class="execution-step"><strong>Paso 3:</strong> El usuario realiza búsqueda avanzada de productos; el backend consulta catálogo y genera respuesta.</div>
+    <div class="execution-step"><strong>Paso 4:</strong> El motor de IA del backend móvil genera sugerencias de ahorro y alertas personalizadas.</div>
+    <div class="execution-step"><strong>Paso 5:</strong> El usuario añade productos al carrito y confirma el pedido.</div>
+    <div class="execution-step"><strong>Paso 6:</strong> El backend valida stock y redirige a la pasarela de pago si es supermercado, o procesa internamente si es PYME.</div>
+    <div class="execution-step"><strong>Paso 7:</strong> Tras la confirmación del pago, se actualiza el historial de compras del usuario en la base de datos.</div>
+    <div class="execution-step"><strong>Paso 8:</strong> El sistema muestra mensaje de éxito y genera notificación al proveedor o comercio.</div>
+  </div>
+</body>
+</html>

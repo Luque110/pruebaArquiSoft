@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Contexto del Sistema – Ahorra+</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 40px;
+    }
+    .box {
+      border: 2px solid #007acc;
+      padding: 20px;
+      margin: 10px;
+      text-align: center;
+      background-color: #f0f8ff;
+      width: 300px;
+      border-radius: 8px;
+    }
+    .system {
+      border-color: #004d99;
+      background-color: #cce6ff;
+    }
+    .row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .line {
+      margin: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Diagrama de Contexto del Sistema – Ahorra+</h2>
+
+    <div class="row">
+      <div class="box">Cliente (Usuario)</div>
+      <div class="box">Proveedor (PYME / Supermercado)</div>
+      <div class="box">Administrador</div>
+    </div>
+
+    <div class="line">▼</div>
+    <div class="system box">
+      <strong>Sistema Ahorra+</strong><br><br>
+      - Comparación de precios<br>
+      - Búsqueda avanzada<br>
+      - Recomendaciones IA<br>
+      - Registro/Login<br>
+      - Carrito y Pago<br>
+      - Registro de Productos
+    </div>
+    <div class="line">▲</div>
+
+    <div class="row">
+      <div class="box">APIs de Supermercados / Web Scraping</div>
+      <div class="box">Pasarelas de Pago (Yape, Plin, Niubiz)</div>
+    </div>
+
+  </div>
+</body>
+</html>
